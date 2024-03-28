@@ -2,7 +2,7 @@
 const nextConfig = {
 	experimental: {
 		serverActions: {
-			allowedOrigins: ["shortlink.test:3000"],
+			allowedOrigins: ["shortlink.test:3000", "kuisin.test:3000"],
 		},
 	},
 	images: {
