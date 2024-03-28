@@ -10,6 +10,9 @@ import {
 } from "drizzle-orm/pg-core";
 import type { AdapterAccount } from "@auth/core/adapters";
 import { relations } from "drizzle-orm";
+import { features } from "process";
+import { array } from "zod";
+import { longtext } from "drizzle-orm/mysql-core";
 
 export const users = pgTable("user", {
 	id: text("id").notNull().primaryKey(),
@@ -95,6 +98,7 @@ export const analytics = pgTable("analytics", {
 		onDelete: "cascade",
 	}),
 	ipAddress: text("ip").notNull(),
+	country: text("country"),
 	visitedAt: timestamp("visitedAt", { mode: "date" }).defaultNow(),
 });
 
@@ -124,6 +128,7 @@ export const payments = pgTable("payments", {
 export const tier = pgTable("tier", {
 	id: uuid("id").defaultRandom().primaryKey(),
 	name: text("name").notNull(),
-	description: text("description"),
-	price: numeric("price").notNull(),
+	description: text("description").notNull(),
+	features: text("features").array(),
+	price: integer("price").notNull(),
 });

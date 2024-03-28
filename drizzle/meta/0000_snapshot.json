@@ -1,5 +1,5 @@
 {
-  "id": "d3f578a5-be69-4c6c-b0b6-bd1e386f7acf",
+  "id": "8f875784-4243-4afc-9df2-49c3e393ea94",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "5",
   "dialect": "pg",
@@ -124,6 +124,12 @@
           "type": "text",
           "primaryKey": false,
           "notNull": true
+        },
+        "country": {
+          "name": "country",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
         },
         "visitedAt": {
           "name": "visitedAt",
@@ -563,11 +569,17 @@
           "name": "description",
           "type": "text",
           "primaryKey": false,
+          "notNull": true
+        },
+        "features": {
+          "name": "features",
+          "type": "text[]",
+          "primaryKey": false,
           "notNull": false
         },
         "price": {
           "name": "price",
-          "type": "numeric",
+          "type": "integer",
           "primaryKey": false,
           "notNull": true
         }

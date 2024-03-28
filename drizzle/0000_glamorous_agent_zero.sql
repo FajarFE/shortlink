@@ -17,6 +17,7 @@ CREATE TABLE IF NOT EXISTS "analytics" (
 	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
 	"shortlinkId" uuid,
 	"ip" text NOT NULL,
+	"country" text,
 	"visitedAt" timestamp DEFAULT now()
 );
 --> statement-breakpoint
@@ -74,8 +75,9 @@ CREATE TABLE IF NOT EXISTS "subscriptions" (
 CREATE TABLE IF NOT EXISTS "tier" (
 	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
 	"name" text NOT NULL,
-	"description" text,
-	"price" numeric NOT NULL
+	"description" text NOT NULL,
+	"features" text[],
+	"price" integer NOT NULL
 );
 --> statement-breakpoint
 CREATE TABLE IF NOT EXISTS "user" (
