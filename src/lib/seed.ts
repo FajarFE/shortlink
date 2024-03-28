@@ -35,7 +35,6 @@ const seedTrials = async () => {
 		price: 3000,
 	};
 
-	// Seed data for Super Trial
 	const superTrial = {
 		name: "Super Trial",
 		description:

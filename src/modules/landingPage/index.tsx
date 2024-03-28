@@ -144,37 +144,59 @@ export const LandingPage = ({ data }: Data) => {
 		<>
 			<div ref={ref} className='bg-slate-950 '>
 				<div className='container w-full h-auto mx-auto w max-7xl relative'>
-					<NavbarRoot className='absolute z-[202]' data={DataLayout} />
+					<NavbarRoot
+						className='absolute bg-slate-950 z-[202]'
+						data={DataLayout}
+					/>
 					<div className='block w-full h-full'>
 						<BackgroundCellAnimation />
 					</div>
 					<div className='absolute top-20 w-full h-full mb-20'>
 						<div className='relative w-full h-screen max-h-[700px] '>
 							<div className=' grid grid-cols-12 max-w-7xl h-full  mx-auto '>
-								<div className=' col-span-6 w-full h-full justify-center flex-col items-start gap-3 flex pb-20'>
-									<span className='z-[200] relative text-lg md:text-lg flex justify-start items-start font-bold text-left p-2 rounded-lg border-4 border-gradient-to-b from-neutral-50 to-neutral-400 border-opacity-50 '>
-										<span className='z-[200] text-lg md:text-md flex justify-center items-center font-bold text-left bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400 bg-opacity-50'>
-											crotlink.ad/linkAnda
+								<div className=' col-span-6 w-full h-full justify-center flex-col  items-start gap-10 flex pb-20'>
+									<div className='flex flex-row gap-5'>
+										<span className='z-[200] relative flex justify-start items-start font-bold text-left p-2 rounded-lg border-2 border-gradient-to-b from-neutral-50 to-neutral-400 border-opacity-50 '>
+											<span className='z-[200] text-md md:text-md flex justify-center items-center font-bold text-left bg-clip-text text-transparent h-full w-auto bg-gradient-to-b from-neutral-50 to-neutral-400 bg-opacity-50'>
+												crotlink.ad/linkAnda
+											</span>
 										</span>
-									</span>
 
+										<span className=' z-[200]  rounded-lg flex px-4 py-2 justify-center items-center font-bold  text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400 bg-opacity-50 '>
+											<span className='text-md md:text-md flex justify-center items-center font-bold text-left bg-clip-text text-transparent bg-gradient-to-b from-neutral-500 to-neutral-800 bg-opacity-50'>
+												DomainAnda.com/linkAnda
+											</span>
+										</span>
+									</div>
 									<h1 className=' z-[200] text-lg md:text-4xl flex justify-center items-center font-bold text-left bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400 bg-opacity-50'>
-										Sekarang Memperpendek Link Jadi Mudah: Nikmati Shortlink
-										Gratis dan Selamanya!
+										Landing page dan Bio page dengan domain pribadi? Ayo, bikin
+										lebih singkat dengan shotlink!
 									</h1>
 									<p className='z-[200] font-normal text-sm text-neutral-300  text-left'>
-										Jadikan berbagi tautan lebih sederhana dan efisien! Dengan
-										layanan shortlink kami, nikmati gratis dan tak terbatas.
-										Perpendek tautan Anda sekarang dan gunakan selamanya.
-										Simplifikasi pengalaman online Anda dengan kami!
+										Ini adalah kesempatan sempurna untuk mengekspresikan diri
+										secara unik dan menarik perhatian orang lain. Dengan
+										shotlink, kamu bisa membuat halaman-halaman tersebut menjadi
+										lebih singkat namun tetap efektif dalam menyampaikan
+										pesanmu. Mari mulai sekarang dan biarkan domain pribadimu
+										menjadi wadah yang sempurna untuk menceritakan kisahmu
+										kepada dunia!
 									</p>
-									<Link
-										href='#'
-										className=' z-[200] text-lg md:text-md rounded-lg flex px-4 py-2 justify-center items-center font-bold  text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400 bg-opacity-50 mt-8'>
-										<span className='text-lg md:text-lg flex justify-center items-center font-bold text-left bg-clip-text text-transparent bg-gradient-to-b from-neutral-500 to-neutral-800 bg-opacity-50'>
-											Perpendek Link Anda
-										</span>
-									</Link>
+									<div className='w-full flex flex-row gap-4'>
+										<Link
+											href='#'
+											className=' z-[200] text-lg md:text-md rounded-lg flex px-4 py-2 justify-center items-center font-bold  text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400 bg-opacity-50 mt-8'>
+											<span className='text-lg md:text-lg flex justify-center items-center font-bold text-left bg-clip-text text-transparent bg-gradient-to-b from-neutral-500 to-neutral-800 bg-opacity-50'>
+												Perpendek Link Anda
+											</span>
+										</Link>
+										<Link
+											href='#'
+											className=' z-[200] text-lg md:text-md rounded-lg flex px-4 py-2 justify-center items-center font-bold  text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400 bg-opacity-50 mt-8'>
+											<span className='text-lg md:text-lg flex justify-center items-center font-bold text-left bg-clip-text text-transparent bg-gradient-to-b from-neutral-500 to-neutral-800 bg-opacity-50'>
+												Perpendek Link Anda
+											</span>
+										</Link>
+									</div>
 								</div>
 								<div className='col-span-6 relative'>
 									<motion.div
@@ -292,8 +314,8 @@ export const Meteors = ({
 				<span
 					key={"meteor" + idx}
 					className={cn(
-						"animate-meteor-effect absolute top-1/2 z-[1] left-1/2 h-0.5 w-0.5 rounded-[9999px] bg-slate-500 shadow-[0_0_0_1px_#ffffff10] rotate-[215deg]",
-						"before:content-[''] before:absolute before:top-1/2 before:transform before:-translate-y-[50%] before:w-[100px] before:h-[1px] before:bg-gradient-to-r before:from-[#64748b] before:to-transparent",
+						"animate-meteor-effect absolute top-1/2 z-[2] left-1/2 h-0.5 w-0.5 rounded-[9999px] bg-white shadow-[0_0_0_1px_#ffffff10] rotate-[215deg]",
+						"before:content-[''] before:absolute before:top-1/2 before:transform before:-translate-y-[50%] before:w-[100px] before:h-[1px] before:bg-gradient-to-r before:from-[#ffffff] before:to-transparent",
 						className
 					)}
 					style={{

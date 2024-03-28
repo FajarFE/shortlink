@@ -26,7 +26,7 @@ export const NavbarRoot = ({
 	return (
 		<div className='mx-auto container w-max-8xl w-full'>
 			<div
-				className={`w-full text-neutral-200  py-4 flex justify-center items-center h-auto bg-slate-950 bg-opacity-40 ${className}`}>
+				className={`w-full text-neutral-200  py-4 flex justify-center items-center h-auto  bg-opacity-40 ${className}`}>
 				<div className='flex justify-between items-center h-full w-full'>
 					<div className='flex flex-row gap-2 justify-center items-center'>
 						{logo && (

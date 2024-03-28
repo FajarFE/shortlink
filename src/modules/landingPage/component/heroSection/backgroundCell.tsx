@@ -8,9 +8,9 @@ import { SparklesCore } from "./sparkles";
 
 export const BackgroundCellAnimation = () => {
 	return (
-		<div className='relative h-screen max-h-[750px] bg-slate-950 flex justify-center overflow-hidden'>
+		<div className='relative h-screen max-h-[750px ] overflow-hidden w-full bg-slate-950 flex justify-center '>
+			<Spotlight className='z-[201] w-full h-full' />
 			<BackgroundCellCore />
-			<Spotlight className='z-[201]' />
 			<SparklesCore
 				id='tsparticlesfullpage '
 				background='transparent '
