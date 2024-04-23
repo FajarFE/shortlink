@@ -13,6 +13,8 @@ import {
 } from "framer-motion";
 import { z } from "zod";
 import { cn } from "@/lib/utils";
+import { AvatarGroupComp } from "@/components/Avatar";
+import { Team } from "@/contents";
 
 export const LandingPage = ({ data }: Data) => {
 	const dataProduct = [
@@ -158,12 +160,11 @@ export const LandingPage = ({ data }: Data) => {
 									<div className='flex flex-row gap-5'>
 										<span className='z-[200] relative flex justify-start items-start font-bold text-left p-2 rounded-lg border-2 border-gradient-to-b from-neutral-50 to-neutral-400 border-opacity-50 '>
 											<span className='z-[200] text-md md:text-md flex justify-center items-center font-bold text-left bg-clip-text text-transparent h-full w-auto bg-gradient-to-b from-neutral-50 to-neutral-400 bg-opacity-50'>
-												crotlink.ad/linkAnda
+												Crotlink.ad/linkAnda
 											</span>
 										</span>
-
-										<span className=' z-[200]  rounded-lg flex px-4 py-2 justify-center items-center font-bold  text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400 bg-opacity-50 '>
-											<span className='text-md md:text-md flex justify-center items-center font-bold text-left bg-clip-text text-transparent bg-gradient-to-b from-neutral-500 to-neutral-800 bg-opacity-50'>
+										<span className=' z-[200]  rounded-lg flex px-2 py-2 justify-center items-center font-bold  text-transparent bg-gradient-to-b from-neutral-50 to-neutral-300 bg-opacity-50 '>
+											<span className='text-md md:text-md flex justify-center items-center font-bold text-left bg-clip-text text-transparent bg-gradient-to-b from-neutral-400 to-neutral-800 bg-opacity-50 hover:shadow-4xl'>
 												DomainAnda.com/linkAnda
 											</span>
 										</span>
@@ -198,6 +199,7 @@ export const LandingPage = ({ data }: Data) => {
 										</Link>
 									</div>
 								</div>
+
 								<div className='col-span-6 relative'>
 									<motion.div
 										style={{ translateY: translate }}
