@@ -26,7 +26,6 @@ import Link from "next/link";
 import { headers } from "next/headers";
 import { count } from "drizzle-orm";
 import { parse } from "path";
-import { useEffect } from "react";
 import { PgColumn } from "drizzle-orm/pg-core";
 import { useSession } from "next-auth/react";
 

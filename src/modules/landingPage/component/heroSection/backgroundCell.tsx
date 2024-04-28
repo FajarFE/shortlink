@@ -8,8 +8,8 @@ import { SparklesCore } from "./sparkles";
 
 export const BackgroundCellAnimation = () => {
 	return (
-		<div className='relative h-screen max-h-[750px ] overflow-hidden w-full bg-slate-950 flex justify-center '>
-			<Spotlight className='z-[201] w-full h-full' />
+		<>
+			<Spotlight className='h-screen max-h-[750px]  absolute z-[201] w-full ' />
 			<BackgroundCellCore />
 			<SparklesCore
 				id='tsparticlesfullpage '
@@ -17,16 +17,16 @@ export const BackgroundCellAnimation = () => {
 				minSize={0.6}
 				maxSize={1.4}
 				particleDensity={100}
-				className='w-full h-full -z-3'
+				className='w-full h-full '
 				particleColor='#FFFFFF'
 			/>
 			<div
-				className='absolute h-full w-screen pointer-events-none -bottom-2 z-[60]  bg-slate-950 '
+				className='absolute h-screen w-screen pointer-events-none -bottom-[700px] z-[60]  bg-slate-950 '
 				style={{
 					maskImage:
 						"linear-gradient(90deg, black , transparent, transparent,black ), linear-gradient(transparent,black 70%)",
 				}}></div>
-		</div>
+		</>
 	);
 };
 
@@ -48,7 +48,7 @@ const BackgroundCellCore = () => {
 		<div
 			ref={ref}
 			onMouseMove={handleMouseMove}
-			className='h-full absolute inset-0 top-[0px] z-[40] -skew-x-12'>
+			className='h-full absolute inset-0 top-[0px]  left-[-1000px] -skew-x-12'>
 			<div className='absolute h-[40rem] inset-y-0  overflow-hidden'>
 				<div
 					className='absolute inset-0 z-20 bg-transparent'
