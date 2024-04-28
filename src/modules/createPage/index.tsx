@@ -1,43 +1,65 @@
-import { Editor, Frame, Element } from "@craftjs/core";
-import { Text } from "@/components/block/text";
-import { Typography, Paper, Grid } from "@material-ui/core";
-import { Topbar } from "@/components/block/topBar";
-import { Container } from "@/components/block/container";
-import { Card } from "@/components/block/card";
-import { Toolbox } from "@/components/block/toolbox";
-import { SettingsPanel } from "@/components/block/settingPanel";
-import { Button } from "@/components/block/button";
+import { Editor, Element, Frame } from "@craftjs/core";
+import { Canvas } from "node/canvas";
+import { ControlPanel } from "node/control-panel";
+import { Header } from "node/header";
+import { NodeButton } from "node/node/button";
+import {
+  NodeCard,
+  NodeCardContent,
+  NodeCardDescription,
+  NodeCardFooter,
+  NodeCardHeader,
+  NodeCardImage,
+  NodeCardTitle,
+} from "node/node/card";
+import { componentsMap } from "node/node/components-map";
+import { NodeOneBlock, NodeTwoBlocks } from "node/node/layout";
+import { ReactIframe } from "node/react-iframe";
+import { RenderNode } from "node/render-node";
+import { SideMenu } from "node/side-menu";
+import { Viewport } from "node/viewport";
 
-export const CreatePage = () => {
-	return (
-		<div>
-			<Typography variant='h5' align='center'>
-				A super simple page editor
-			</Typography>
-			<Editor resolver={{ Card, Button, Text, Container }}>
-				<Grid container spacing={3}>
-					<Grid item xs>
-						<Frame>
-							<Container padding={5} background='#eee'>
-								<Card background='red' padding={14} />
-								<Button size='small' variant='outlined'>
-									Click
-								</Button>
-								<Text fontSize={41} text='Hi world!' />
-								<Container padding={6} background='#999'>
-									<Text fontSize={41} text="It's me again!" />
-								</Container>
-							</Container>
-						</Frame>
-					</Grid>
-					<Grid item xs={3}>
-						<Paper className='wadad'>
-							<Toolbox />
-							<SettingsPanel />
-						</Paper>
-					</Grid>
-				</Grid>
-			</Editor>
-		</div>
-	);
-};
+export default function CreatePage() {
+  return (
+    <section className='w-full min-h-screen flex flex-col'>
+      <Header />
+      <Editor
+        resolver={{
+          NodeButton,
+          Canvas,
+          NodeCardHeader,
+          NodeCard,
+          NodeCardImage,
+          NodeCardContent,
+          NodeCardDescription,
+          NodeCardTitle,
+          NodeCardFooter,
+          NodeOneBlock,
+          NodeTwoBlocks,
+        }}
+        onRender={RenderNode}
+      >
+        <div className='flex flex-1 relative overflow-hidden'>
+          <SideMenu componentsMap={componentsMap} />
+          <Viewport>
+            <ReactIframe
+              title='my frame'
+              className='p-4 w-full h-full page-container'
+            >
+              <Frame>
+                <Element is={Canvas} id='ROOT' canvas>
+                  <NodeButton>Button 1</NodeButton>
+                  <NodeButton>Button 2</NodeButton>
+                  <NodeButton>Button 3</NodeButton>
+                  <NodeButton>Button 4</NodeButton>
+                </Element>
+              </Frame>
+            </ReactIframe>
+          </Viewport>
+
+          <ControlPanel />
+        </div>
+      </Editor>
+    </section>
+  );
+}

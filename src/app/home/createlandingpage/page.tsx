@@ -1,11 +1,10 @@
 "use client";
-import { CreatePage } from "@/modules/createPage";
-import dynamic from "next/dynamic";
+import CreatePage from "@/modules/createPage";
 
 export default function Page() {
-	return (
-		<div>
-			<CreatePage />
-		</div>
-	);
+  return (
+    <div>
+      <CreatePage />
+    </div>
+  );
 }
