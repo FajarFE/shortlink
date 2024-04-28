@@ -13,6 +13,8 @@ import {
 } from "framer-motion";
 import { z } from "zod";
 import { cn } from "@/lib/utils";
+import { AvatarGroupComp } from "@/components/Avatar";
+import { Team } from "@/contents";
 
 export const LandingPage = ({ data }: Data) => {
 	const dataProduct = [
@@ -143,27 +145,23 @@ export const LandingPage = ({ data }: Data) => {
 	return (
 		<>
 			<div ref={ref} className='bg-slate-950 '>
-				<div className='container w-full h-auto mx-auto w max-7xl relative'>
-					<NavbarRoot
-						className='absolute bg-slate-950 z-[202]'
-						data={DataLayout}
-					/>
-					<div className='block w-full h-full'>
+				<div className='container w-full h-auto mx-auto w max-7xl overflow-hidden '>
+					<NavbarRoot className=' bg-slate-950 z-[202]' data={DataLayout} />
+					<div className='relative   w-full bg-slate-950 flex justify-center '>
 						<BackgroundCellAnimation />
 					</div>
-					<div className='absolute top-20 w-full h-full mb-20'>
+					<div className=' w-full h-full mb-20 '>
 						<div className='relative w-full h-screen max-h-[700px] '>
-							<div className=' grid grid-cols-12 max-w-7xl h-full  mx-auto '>
+							<div className=' grid absolute -top-20 grid-cols-12 gap-5 max-w-7xl h-full  mx-auto '>
 								<div className=' col-span-6 w-full h-full justify-center flex-col  items-start gap-10 flex pb-20'>
 									<div className='flex flex-row gap-5'>
 										<span className='z-[200] relative flex justify-start items-start font-bold text-left p-2 rounded-lg border-2 border-gradient-to-b from-neutral-50 to-neutral-400 border-opacity-50 '>
 											<span className='z-[200] text-md md:text-md flex justify-center items-center font-bold text-left bg-clip-text text-transparent h-full w-auto bg-gradient-to-b from-neutral-50 to-neutral-400 bg-opacity-50'>
-												crotlink.ad/linkAnda
+												Crotlink.ad/linkAnda
 											</span>
 										</span>
-
-										<span className=' z-[200]  rounded-lg flex px-4 py-2 justify-center items-center font-bold  text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400 bg-opacity-50 '>
-											<span className='text-md md:text-md flex justify-center items-center font-bold text-left bg-clip-text text-transparent bg-gradient-to-b from-neutral-500 to-neutral-800 bg-opacity-50'>
+										<span className=' z-[200]  rounded-lg flex px-2 py-2 justify-center items-center font-bold  text-transparent bg-gradient-to-b from-neutral-50 to-neutral-300 bg-opacity-50 '>
+											<span className='text-md md:text-md flex justify-center items-center font-bold text-left bg-clip-text text-transparent bg-gradient-to-b from-neutral-400 to-neutral-800 bg-opacity-50 hover:shadow-4xl'>
 												DomainAnda.com/linkAnda
 											</span>
 										</span>
@@ -172,14 +170,11 @@ export const LandingPage = ({ data }: Data) => {
 										Landing page dan Bio page dengan domain pribadi? Ayo, bikin
 										lebih singkat dengan shotlink!
 									</h1>
-									<p className='z-[200] font-normal text-sm text-neutral-300  text-left'>
+									<p className='z-[200] font-normal text-sm text-neutral-300  text-left pr-20'>
 										Ini adalah kesempatan sempurna untuk mengekspresikan diri
-										secara unik dan menarik perhatian orang lain. Dengan
-										shotlink, kamu bisa membuat halaman-halaman tersebut menjadi
-										lebih singkat namun tetap efektif dalam menyampaikan
-										pesanmu. Mari mulai sekarang dan biarkan domain pribadimu
-										menjadi wadah yang sempurna untuk menceritakan kisahmu
-										kepada dunia!
+										secara unik dan menarik perhatian orang lain. Mari mulai
+										sekarang dan biarkan domain pribadimu menjadi wadah yang
+										sempurna untuk menceritakan kisahmu kepada dunia!
 									</p>
 									<div className='w-full flex flex-row gap-4'>
 										<Link
@@ -198,10 +193,11 @@ export const LandingPage = ({ data }: Data) => {
 										</Link>
 									</div>
 								</div>
-								<div className='col-span-6 relative'>
+
+								<div className='col-span-6 relative w-full '>
 									<motion.div
 										style={{ translateY: translate }}
-										className='absolute z-[200] top-[90px] left-[200px]'>
+										className='absolute z-[200] w-[90%] top-[90px] left-[100px]'>
 										<GatauLink data={data} />
 									</motion.div>
 								</div>
@@ -210,7 +206,6 @@ export const LandingPage = ({ data }: Data) => {
 					</div>
 				</div>
 				<div className='w-full h-screen bg-gradient-to-b relative overflow-hidden from-slate-950 to-slate-700'>
-					<Meteors className='mt-40' number={100} />
 					<div
 						className='absolute h-[600px] w-screen pointer-events-none -top-24 z-[2]  bg-slate-950 '
 						style={{
@@ -219,11 +214,11 @@ export const LandingPage = ({ data }: Data) => {
 					<div className='gap-4 flex flex-col'>
 						<motion.h2
 							style={{
-								translateY: textTransformDescription,
-								opacity: textOpacityDescription,
+								translateY: textTransform,
+								opacity: textOpacity,
 								zIndex: 10,
 							}}
-							className=' relative  text-md md:text-lg flex justify-center items-center font-bold text-left bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400 bg-opacity-100'>
+							className=' relative  text-lg md:text-4xl flex justify-center items-center font-bold text-left bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400 bg-opacity-100'>
 							OWKOADOAODAODAODOD
 						</motion.h2>
 						<motion.h2
@@ -232,7 +227,7 @@ export const LandingPage = ({ data }: Data) => {
 								opacity: textOpacity,
 								zIndex: 10,
 							}}
-							className=' relative  text-lg md:text-4xl flex justify-center items-center font-bold text-left bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400 bg-opacity-100'>
+							className=' relative  text-md md:text-lg flex justify-center items-center font-bold text-left bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400 bg-opacity-100'>
 							OWKOADOAODAODAODOD
 						</motion.h2>
 					</div>{" "}

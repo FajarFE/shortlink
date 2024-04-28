@@ -1,6 +1,7 @@
+import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
 
 interface dataLink {
 	name: string;
@@ -23,34 +24,40 @@ export const NavbarRoot = ({
 	className,
 	sizeLogo,
 }: NavbarRootProps) => {
+	const [kontrol, setKontrol] = useState(false);
 	return (
-		<div className='mx-auto container w-max-8xl w-full'>
-			<div
-				className={`w-full text-neutral-200  py-4 flex justify-center items-center h-auto  bg-opacity-40 ${className}`}>
-				<div className='flex justify-between items-center h-full w-full'>
-					<div className='flex flex-row gap-2 justify-center items-center'>
-						{logo && (
-							<Image
-								src={`${logo}`}
-								alt='logo'
-								width={sizeLogo}
-								height={sizeLogo}
-								className={`${styleLogo}`}
-							/>
-						)}
-						<div>
-							<h1 className='text-2xl font-bold'>CrotLink</h1>
-						</div>
+		<div
+			className={`w-full text-neutral-200  py-4 flex justify-center items-center h-auto  bg-opacity-40 ${className}`}>
+			<div className='flex justify-between items-center h-full w-full'>
+				<div className='flex flex-row gap-2 justify-center items-center'>
+					{logo && (
+						<Image
+							src={`${logo}`}
+							alt='logo'
+							width={sizeLogo}
+							height={sizeLogo}
+							className={`${styleLogo}`}
+						/>
+					)}
+					<div>
+						<h1 className='text-2xl font-bold'>CrotLink</h1>
+						<Button
+							onClick={() => {
+								setKontrol(!kontrol);
+							}}>
+							Klik
+						</Button>
 					</div>
-					<div className='flex flex-row gap-5 justify-center items-center'>
-						{data.map((item, index) => {
-							return (
-								<Link key={index} href={item.url}>
-									{item.name}
-								</Link>
-							);
-						})}
-					</div>
+				</div>
+				<div className='flex flex-row gap-5 justify-center items-center'>
+					{kontrol && <div>awodkoakdoaaowdkoa</div>}
+					{data.map((item, index) => {
+						return (
+							<Link key={index} href={item.url}>
+								{item.name}
+							</Link>
+						);
+					})}
 				</div>
 			</div>
 		</div>

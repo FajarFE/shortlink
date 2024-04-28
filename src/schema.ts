@@ -10,7 +10,7 @@ import {
 } from "drizzle-orm/pg-core";
 import type { AdapterAccount } from "@auth/core/adapters";
 import { relations } from "drizzle-orm";
-import { features } from "process";
+import { features, title } from "process";
 import { array } from "zod";
 import { longtext } from "drizzle-orm/mysql-core";
 
@@ -100,6 +100,78 @@ export const analytics = pgTable("analytics", {
 	ipAddress: text("ip").notNull(),
 	country: text("country"),
 	visitedAt: timestamp("visitedAt", { mode: "date" }).defaultNow(),
+});
+
+export const template = pgTable("template", {
+	id: uuid("id").defaultRandom().primaryKey(),
+	landingPageId: uuid("landingPageId").references(() => landingPage.id, {
+		onDelete: "cascade",
+	}),
+	detailPageId: uuid("detailPageId").references(() => detailPage.id, {
+		onDelete: "cascade",
+	}),
+	categoryId: uuid("categoryId").references(() => categoryPage.id, {
+		onDelete: "cascade",
+	}),
+	userId: text("userId").references(() => users.id, { onDelete: "cascade" }),
+});
+
+export const keywords = pgTable("keywords", {
+	id: uuid("id").defaultRandom().primaryKey(),
+	keyword: text("keyword").notNull(),
+	templateId: uuid("templateId").references(() => template.id, {
+		onDelete: "cascade",
+	}),
+});
+
+export const landingPage = pgTable("landingPage", {
+	id: uuid("id").defaultRandom().primaryKey(),
+	componentId: text("componentId").references(() => componentPage.id, {
+		onDelete: "cascade",
+	}),
+});
+
+export const detailPage = pgTable("detailPage", {
+	id: uuid("id").defaultRandom().primaryKey(),
+	componentId: text("componentId").references(() => componentPage.id, {
+		onDelete: "cascade",
+	}),
+});
+
+export const componentPage = pgTable("componentPage", {
+	id: uuid("id").defaultRandom().primaryKey(),
+	component: text("component").notNull(),
+});
+
+export const navbarData = pgTable("navbarData", {
+	id: uuid("id").defaultRandom().primaryKey(),
+	image: text("image"),
+	navbar: text("navbar").array(),
+});
+
+export const socialMedia = pgTable("socialMedia", {
+	id: uuid("id").defaultRandom().primaryKey(),
+	facebook: text("facebook"),
+	tiktok: text("tiktok"),
+	instagram: text("instagram"),
+	whatsapp: text("whatsapp"),
+});
+
+export const productData = pgTable("productData", {
+	id: uuid("id").defaultRandom().primaryKey(),
+	title: text("tile").notNull(),
+	desc: text("desc").notNull(),
+	image: text("image").notNull(),
+});
+
+export const metaData = pgTable("metaData", {
+	id: uuid("id").defaultRandom().primaryKey(),
+	title: text("title").notNull(),
+	desc: text("desc").notNull(),
+});
+
+export const categoryPage = pgTable("categoryPage", {
+	id: uuid("id").defaultRandom().primaryKey(),
 });
 
 export const subscriptions = pgTable("subscriptions", {

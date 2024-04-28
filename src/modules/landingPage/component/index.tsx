@@ -62,6 +62,8 @@ export const GatauLink = ({ data }: Data) => {
 	const { toast } = useToast();
 	const [customLink, setCustomLink] = useState(false);
 	const [customDomain, setCustomDomain] = useState(false);
+	const [hoverLink, setHoverLink] = useState(false);
+	const [indexHover, setIndexHover] = useState("");
 
 	const handlerCopyButton = () => {
 		navigator.clipboard.writeText(window.location.hostname + "/" + state.url);
@@ -119,7 +121,7 @@ export const GatauLink = ({ data }: Data) => {
 	return (
 		<>
 			<QrStyleProvider>
-				<main className='w-full min-h-screen dark:bg-gray-900 '>
+				<main className='w-full  min-h-screen dark:bg-gray-900 '>
 					<header className='flex items-center justify-center'>
 						<Link className='flex items-center' href='#'>
 							<span className='sr-only'>ShortLink</span>
@@ -155,50 +157,6 @@ export const GatauLink = ({ data }: Data) => {
 											Shorten
 										</Button>
 									</div>
-									{customLink && (
-										<div className='relative w-full flex'>
-											<span className='sr-only'>Custom URL</span>
-											<Input
-												className='w-full focus:outline-none shadow-md'
-												id='customUrl'
-												name='customUrl'
-												placeholder='Enter Custom Link'
-												required
-												type='customUrl'
-											/>
-										</div>
-									)}
-									{customDomain && (
-										<div className='relative w-full flex'>
-											<span className='sr-only'>Custom URL</span>
-											<Input
-												className='w-full focus:outline-none shadow-md'
-												id='customUrl'
-												name='customUrl'
-												placeholder='Enter Custom Link'
-												required
-												type='customUrl'
-											/>
-										</div>
-									)}
-								</div>
-								<div className=' h-[41px] rounded-md  gap-2 flex shadow-lg '>
-									<Button
-										onClick={() => {
-											setCustomLink(!customLink);
-										}}
-										type='button'
-										className='w-full bg-white text-black top-0 right-0 hover:bg-neutral-400 '>
-										Custom Link
-									</Button>
-									<Button
-										onClick={() => {
-											setCustomDomain(!customDomain);
-										}}
-										type='button'
-										className='w-full bg-white text-black top-0 right-0 hover:bg-neutral-400 '>
-										Custom Domain
-									</Button>
 								</div>
 							</form>
 						</Form>
@@ -234,18 +192,28 @@ export const GatauLink = ({ data }: Data) => {
 											</div>
 										</TableCell>
 										<TableCell>
-											<div className='flex px-5 justify-between items-center w-full  gap-2'>
-												<div>
-													{window.location.hostname + "/" + link.shortUrl}
-												</div>
+											<div className='flex px-5 justify-center items-center w-full  gap-2 relative'>
 												<div className='flex justify-center items-center gap-5'>
 													<Link
 														href={link.shortUrl}
 														rel='noopener noreferrer'
 														target='_blank'
-														className='w-8 h-8 bg-white 
+														onMouseEnter={() => {
+															setHoverLink(true);
+															setIndexHover(index.toString());
+														}}
+														onMouseLeave={() => {
+															setHoverLink(false);
+															setIndexHover(index.toString());
+														}}
+														className='w-8 h-8 relative bg-white 
 												rounded-md flex justify-center items-center shadow-md'>
 														<FaShare color='black ' size={15} />
+														{hoverLink && parseInt(indexHover) === index && (
+															<div className='absolute -top-10 bg-slate-300 w-[200px] justify-center items-center flex px-2 py-2 rounded-md'>
+																{link.shortUrl}
+															</div>
+														)}
 													</Link>
 													<Button
 														size='sm'
@@ -259,7 +227,7 @@ export const GatauLink = ({ data }: Data) => {
 											</div>
 										</TableCell>
 										<TableCell>
-											<div className='flex justify-between items-center w-full '>
+											<div className='flex justify-center items-center w-full '>
 												<div>{link.hits}</div>
 											</div>
 										</TableCell>

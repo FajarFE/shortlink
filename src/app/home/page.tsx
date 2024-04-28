@@ -15,8 +15,8 @@ export default async function Home() {
 		.from(shortlink)
 		.where(eq(shortlink.publicUrl, true));
 	return (
-		<div>
+		<>
 			<LandingPage data={Data} />
-		</div>
+		</>
 	);
 }
