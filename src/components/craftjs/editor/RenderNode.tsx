@@ -1,9 +1,12 @@
-import { useEditor, useNode } from "@craftjs/core";
-import React, { useEffect, useRef, useCallback } from "react";
-import styled from "styled-components";
-import ReactDOM from "react-dom";
+import { useNode, useEditor } from "@craftjs/core";
 import { ROOT_NODE } from "@craftjs/utils";
-import { ArrowUpIcon, TrashIcon, MoveIcon } from "@radix-ui/react-icons";
+import React, { useEffect, useRef, useCallback } from "react";
+import ReactDOM from "react-dom";
+import styled from "styled-components";
+
+import { FaArrowUp } from "react-icons/fa";
+import { LuDelete } from "react-icons/lu";
+import { ImMoveUp } from "react-icons/im";
 
 const IndicatorDiv = styled.div`
 	height: 30px;
@@ -30,7 +33,7 @@ const Btn = styled.a`
 	}
 `;
 
-export const RenderNode = ({ render }: { render: React.ReactNode }) => {
+export const RenderNode = ({ render }) => {
 	const { id } = useNode();
 	const { actions, query, isActive } = useEditor((_, query) => ({
 		isActive: query.getEvent("selected").contains(id),
@@ -38,16 +41,14 @@ export const RenderNode = ({ render }: { render: React.ReactNode }) => {
 
 	const {
 		isHover,
-		isSelected,
 		dom,
+		name,
 		moveable,
+		deletable,
 		connectors: { drag },
 		parent,
-		deletable,
-		props,
 	} = useNode((node) => ({
 		isHover: node.events.hovered,
-		isSelected: node.events.selected,
 		dom: node.dom,
 		name: node.data.custom.displayName || node.data.displayName,
 		moveable: query.node(node.id).isDraggable(),
@@ -56,7 +57,7 @@ export const RenderNode = ({ render }: { render: React.ReactNode }) => {
 		props: node.data.props,
 	}));
 
-	const currentRef = React.useRef<HTMLDivElement>();
+	const currentRef = useRef<HTMLDivElement>();
 
 	useEffect(() => {
 		if (dom) {
@@ -77,6 +78,7 @@ export const RenderNode = ({ render }: { render: React.ReactNode }) => {
 
 	const scroll = useCallback(() => {
 		const { current: currentDOM } = currentRef;
+
 		if (!currentDOM) return;
 		const { top, left } = getPos(dom);
 		currentDOM.style.top = top;
@@ -110,7 +112,7 @@ export const RenderNode = ({ render }: { render: React.ReactNode }) => {
 							<h2 className='flex-1 mr-4'>{name}</h2>
 							{moveable ? (
 								<Btn className='mr-2 cursor-move' ref={drag}>
-									<MoveIcon />
+									<ImMoveUp />
 								</Btn>
 							) : null}
 							{id !== ROOT_NODE && (
@@ -119,7 +121,7 @@ export const RenderNode = ({ render }: { render: React.ReactNode }) => {
 									onClick={() => {
 										actions.selectNode(parent);
 									}}>
-									<ArrowUpIcon />
+									<FaArrowUp />
 								</Btn>
 							)}
 							{deletable ? (
@@ -129,7 +131,7 @@ export const RenderNode = ({ render }: { render: React.ReactNode }) => {
 										e.stopPropagation();
 										actions.delete(id);
 									}}>
-									<TrashIcon />
+									<LuDelete />
 								</Btn>
 							) : null}
 						</IndicatorDiv>,
