@@ -2,8 +2,9 @@ import type { PropsWithChildren } from "react";
 import React, { forwardRef } from "react";
 import { useEditor, useNode } from "@craftjs/core";
 
-const BUTTON_PATH = "@/components/button";
-const CARD_PATH = "@/components/card";
+const BUTTON_PATH = "node/node/button";
+const CARD_PATH = "node/node/card";
+const CONTAINER_PATH = "node/node/container";
 
 const importPathMap: { [key: string]: string } = {
 	button: BUTTON_PATH,
@@ -13,6 +14,7 @@ const importPathMap: { [key: string]: string } = {
 	cardfooter: CARD_PATH,
 	cardtitle: CARD_PATH,
 	cardimage: CARD_PATH,
+	container: CONTAINER_PATH,
 	carddescription: CARD_PATH,
 };
 

@@ -1,7 +1,10 @@
 import { useEditor } from "@craftjs/core";
-import React from "react";
+import React, { useState } from "react";
+import { Layers } from "@craftjs/layers";
 
 export const ControlPanel = () => {
+	const [layersVisible, setLayerVisible] = useState(true);
+	const [toolbarVisible, setToolbarVisible] = useState(true);
 	const { active, related } = useEditor((state, query) => {
 		// TODO: handle multiple selected elements
 		const currentlySelectedNodeId = query.getEvent("selected").first();
@@ -18,6 +21,7 @@ export const ControlPanel = () => {
 				Control Panel
 			</h3>
 			{active && related.toolbar && React.createElement(related.toolbar)}
+			<Layers expandRootOnLoad={true} />
 		</div>
 	);
 };

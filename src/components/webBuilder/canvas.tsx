@@ -4,6 +4,9 @@ import React, { useState } from "react";
 import { getOutputCode, getOutputHTMLFromId } from "@/lib/code-gen";
 import { CodeView } from "./code-view";
 import { DrawerTrigger, DrawerContent, Drawer } from "./ui/drawer";
+import { Button } from "../ui/button";
+import { FaDesktop, FaMobileAlt, FaTabletAlt } from "react-icons/fa";
+import { useMediaQuery } from "react-responsive";
 
 type CanvasProps = {
 	children: React.ReactNode;
@@ -18,6 +21,9 @@ export const Canvas = ({ children }: CanvasProps) => {
 		canUndo: query.history.canUndo(),
 		canRedo: query.history.canRedo(),
 	}));
+	const isMobile = useMediaQuery({ maxWidth: 640 });
+	const isTablet = useMediaQuery({ minWidth: 641, maxWidth: 1024 });
+
 	const [output, setOutput] = useState<string | null>();
 	const [htmlOutput, setHtmlOutput] = useState<string | null>();
 
@@ -42,11 +48,32 @@ export const Canvas = ({ children }: CanvasProps) => {
 	return (
 		<div className='w-full h-full flex justify-center'>
 			<div className={`${canvasWidth} flex flex-col h-full border rounded-sm`}>
-				<div className='flex justify-between items-center p-4 w-full bg-gray-200'>
-					<div className='flex gap-3'>
-						<div className='h-3 w-3 rounded-full bg-red-400'></div>
-						<div className='h-3 w-3 rounded-full bg-yellow-400'></div>
-						<div className='h-3 w-3 rounded-full bg-green-400'></div>
+				<div className='flex justify-between items-center p-4 w-full bg-slate-700 rounded-t-lg'>
+					<div className='flex gap-5 justify-center items-center'>
+						<div className='flex gap-3 justify-center items-center'>
+							<div className='h-3 w-3 rounded-full bg-red-400'></div>
+							<div className='h-3 w-3 rounded-full bg-yellow-400'></div>
+							<div className='h-3 w-3 rounded-full bg-green-400'></div>
+						</div>
+						{isMobile ? null : isTablet ? (
+							<>
+								<button>
+									<FaMobileAlt size={30} color='white' />
+								</button>
+							</>
+						) : (
+							<>
+								<button>
+									<FaMobileAlt size={30} color='white' />
+								</button>
+								<button>
+									<FaDesktop size={30} color='white' />
+								</button>
+								<button>
+									<FaTabletAlt size={30} color='white' />
+								</button>
+							</>
+						)}
 					</div>
 					<div className='flex gap-2'>
 						<Drawer
@@ -133,7 +160,7 @@ export const Canvas = ({ children }: CanvasProps) => {
 };
 
 Canvas.craft = {
-	displayName: "div",
+	displayName: "Screen Landing Page",
 	props: {
 		className: "w-full h-full",
 	},

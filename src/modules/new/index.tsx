@@ -1,3 +1,5 @@
+import { withNode } from "@/components/webBuilder/node/connector";
+import { NodeContainer } from "@/components/webBuilder/node/container";
 import { Editor, Element, Frame } from "@craftjs/core";
 import { Canvas } from "node/canvas";
 import { ControlPanel } from "node/control-panel";
@@ -34,6 +36,7 @@ export default function Awikwok() {
 					NodeCardDescription,
 					NodeCardTitle,
 					NodeCardFooter,
+					NodeContainer,
 					NodeOneBlock,
 					NodeTwoBlocks,
 				}}
@@ -50,11 +53,19 @@ export default function Awikwok() {
 									<NodeButton>Button 2</NodeButton>
 									<NodeButton>Button 3</NodeButton>
 									<NodeButton>Button 4</NodeButton>
+									<Element
+										canvas
+										id='container-content'
+										is={NodeContainer as typeof NodeContainer & string}>
+										<NodeButton>Button 1</NodeButton>
+										<NodeButton>Button 2</NodeButton>
+										<NodeButton>Button 3</NodeButton>
+										<NodeButton>Button 4</NodeButton>
+									</Element>
 								</Element>
 							</Frame>
 						</ReactIframe>
 					</Viewport>
-
 					<ControlPanel />
 				</div>
 			</Editor>
