@@ -6,7 +6,9 @@ import { SettingsControl } from "../settings-control";
 const draggable = true;
 const droppable = true;
 
-interface OneBlockProps extends React.HTMLAttributes<HTMLDivElement> {}
+interface OneBlockProps extends React.HTMLAttributes<HTMLDivElement> {
+	totalBlocks?: number;
+}
 
 export const OneBlock = React.forwardRef<HTMLDivElement, OneBlockProps>(
 	({ ...props }, ref) => {
@@ -40,10 +42,51 @@ export const NodeTwoBlocks = ({ ...props }: NodeTwoBlocksProps) => {
 	);
 };
 
+interface NodeCustomBlocksProps extends React.HTMLAttributes<HTMLDivElement> {
+	totalBlocks?: number;
+}
+
+export const NodeCustomBlocks = ({
+	totalBlocks = 12, // Atur nilai default totalBlocks jika tidak diberikan
+	...props
+}: NodeCustomBlocksProps) => {
+	const maxBlocks = Math.min(totalBlocks, 12); // Maksimum 12 blok
+	const elements = [];
+
+	for (let i = 0; i < maxBlocks; i++) {
+		elements.push(
+			<Element
+				key={i}
+				canvas
+				is={NodeOneBlock as typeof NodeOneBlock & string}
+				id={`block-${i}`}
+			/>
+		);
+	}
+
+	// Prop totalBlocks diteruskan ke NodeOneBlock
+	return (
+		<NodeOneBlock totalBlocks={totalBlocks} {...props}>
+			{elements}
+		</NodeOneBlock>
+	);
+};
+
 NodeTwoBlocks.craft = {
 	displayName: "div",
 	props: {
 		className: "flex flex-row m-2 p-4",
+	},
+	related: {
+		toolbar: SettingsControl,
+	},
+};
+
+NodeCustomBlocks.craft = {
+	...NodeCustomBlocks.craft,
+	props: {
+		className: "flex flex-row m-2 p-4",
+		totalBlocks: 3,
 	},
 	related: {
 		toolbar: SettingsControl,

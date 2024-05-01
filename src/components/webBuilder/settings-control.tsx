@@ -19,12 +19,14 @@ export const SettingsControl = () => {
 		id,
 		classNames,
 		deletable,
+		totalBlocks,
 		text,
 		src,
 		actions: { setProp },
 	} = useNode((node) => ({
 		classNames: node.data.props["className"] as string,
 		text: node.data.props["children"] as string,
+		totalBlocks: node.data.props["totalBlocks"] as number,
 		deletable: query.node(node.id).isDeletable(),
 		src: node.data.props["file"] as string,
 	}));
@@ -155,6 +157,22 @@ export const SettingsControl = () => {
 					setValue(option);
 				}}
 			/>
+
+			{typeof totalBlocks === "number" ? (
+				<Input
+					type='text'
+					value={totalBlocks}
+					className='mb-4'
+					onChange={(e) =>
+						setProp(
+							(props: { totalBlocks: number }) =>
+								(props.totalBlocks = Number(
+									e.target.value.replace(/<\/?[^>]+(>|$)/g, "")
+								))
+						)
+					}
+				/>
+			) : null}
 		</div>
 	);
 };

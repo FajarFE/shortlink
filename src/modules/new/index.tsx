@@ -1,3 +1,7 @@
+import {
+	NodeHeroSection1,
+	NodeIllustration,
+} from "@/components/webBuilder/components/herosection";
 import { withNode } from "@/components/webBuilder/node/connector";
 import { NodeContainer } from "@/components/webBuilder/node/container";
 import { Editor, Element, Frame } from "@craftjs/core";
@@ -15,7 +19,11 @@ import {
 	NodeCardTitle,
 } from "node/node/card";
 import { componentsMap } from "node/node/components-map";
-import { NodeOneBlock, NodeTwoBlocks } from "node/node/layout";
+import {
+	NodeOneBlock,
+	NodeTwoBlocks,
+	NodeCustomBlocks,
+} from "node/node/layout";
 import { ReactIframe } from "node/react-iframe";
 import { RenderNode } from "node/render-node";
 import { SideMenu } from "node/side-menu";
@@ -29,13 +37,16 @@ export default function Awikwok() {
 				resolver={{
 					NodeButton,
 					Canvas,
+					NodeCustomBlocks,
 					NodeCardHeader,
 					NodeCard,
+					NodeHeroSection1,
 					NodeCardImage,
 					NodeCardContent,
 					NodeCardDescription,
 					NodeCardTitle,
 					NodeCardFooter,
+					NodeIllustration,
 					NodeContainer,
 					NodeOneBlock,
 					NodeTwoBlocks,
@@ -62,6 +73,8 @@ export default function Awikwok() {
 										<NodeButton>Button 3</NodeButton>
 										<NodeButton>Button 4</NodeButton>
 									</Element>
+									<NodeIllustration />
+									<NodeHeroSection1 />
 								</Element>
 							</Frame>
 						</ReactIframe>
