@@ -82,8 +82,8 @@ NodeTwoBlocks.craft = {
 	},
 };
 
-NodeCustomBlocks.craft = {
-	...NodeCustomBlocks.craft,
+(NodeCustomBlocks as any).craft = {
+	...(NodeCustomBlocks as any).craft,
 	props: {
 		className: "flex flex-row m-2 p-4",
 		totalBlocks: 3,
@@ -93,8 +93,8 @@ NodeCustomBlocks.craft = {
 	},
 };
 
-NodeOneBlock.craft = {
-	...NodeOneBlock.craft,
+(NodeOneBlock as any).craft = {
+	...(NodeOneBlock as any).craft,
 	props: {
 		className: "w-full",
 	},

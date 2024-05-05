@@ -45,7 +45,7 @@ export default async function Dashboard({ searchParams }: SearchParamsProps) {
 	if (!authsssssssss) {
 		return redirect("/login");
 	}
-
+	console.log(authsssssssss, "awodkoawdkoadkoakdo");
 	const pageNumber = searchParams.page ?? 1;
 	const shortData = searchParams.search ?? null;
 	const domainData = searchParams.domain ?? "";
@@ -61,7 +61,7 @@ export default async function Dashboard({ searchParams }: SearchParamsProps) {
 				shortData !== null
 					? ilike(shortlink.longUrl, `%${shortData}%`)
 					: undefined,
-				eq(shortlink.userId, authsssssssss.id)
+				eq(shortlink.userId, authsssssssss.user?.id || "")
 			)
 		)
 		.groupBy(
@@ -79,7 +79,7 @@ export default async function Dashboard({ searchParams }: SearchParamsProps) {
 				domainData !== null
 					? ilike(customDomain.domain, `%${domainData}%`)
 					: undefined,
-				eq(customDomain.userId, authsssssssss.id)
+				eq(shortlink.userId, authsssssssss.user?.id || "")
 			)
 		);
 	const prevSearchParams = new URLSearchParams();

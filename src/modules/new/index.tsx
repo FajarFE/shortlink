@@ -40,13 +40,11 @@ export default function Awikwok() {
 					NodeCustomBlocks,
 					NodeCardHeader,
 					NodeCard,
-					NodeHeroSection1,
 					NodeCardImage,
 					NodeCardContent,
 					NodeCardDescription,
 					NodeCardTitle,
 					NodeCardFooter,
-					NodeIllustration,
 					NodeContainer,
 					NodeOneBlock,
 					NodeTwoBlocks,
@@ -73,8 +71,6 @@ export default function Awikwok() {
 										<NodeButton>Button 3</NodeButton>
 										<NodeButton>Button 4</NodeButton>
 									</Element>
-									<NodeIllustration />
-									<NodeHeroSection1 />
 								</Element>
 							</Frame>
 						</ReactIframe>

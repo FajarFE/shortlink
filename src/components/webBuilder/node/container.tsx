@@ -13,8 +13,8 @@ export const NodeContainer = withNode(Container, {
 	droppable,
 });
 
-NodeContainer.craft = {
-	...NodeContainer.craft,
+(NodeContainer as any).craft = {
+	...(NodeContainer as any).craft,
 	props: {
 		className: "w-full",
 	},

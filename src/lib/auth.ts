@@ -20,7 +20,7 @@ export const {
 			return { ...token, ...user };
 		},
 		async session({ session, user }: { session: Session; user?: User }) {
-			return { ...session, ...user };
+			return { ...session };
 		},
 	},
 });

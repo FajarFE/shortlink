@@ -14,7 +14,7 @@ import { PgUUID } from "drizzle-orm/pg-core";
 // Simple in-memory cache for only storing the longUrl
 
 export async function GET(
-	req: NextApiRequest,
+	req: NextRequest,
 	{ params }: { params: { link: string; domain: string } }
 ) {
 	console.log(params.link);

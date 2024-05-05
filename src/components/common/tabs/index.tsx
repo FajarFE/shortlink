@@ -143,7 +143,7 @@ const Layout = ({ children }: TabProps) => {
 								<Link
 									href={tab.href}
 									key={tab.id}
-									ref={(el) => (tabsRef.current[idx] = el)}
+									ref={(el: any) => (tabsRef.current[idx] = el)}
 									id={tab.id}
 									className={clsx(
 										"flex items-center justify-center rounded-full p-4 transition-colors duration-300 ease-in-out",

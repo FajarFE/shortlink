@@ -1,6 +1,8 @@
 import * as React from "react";
 
 import { cn } from "@/lib/utils";
+import Image from "next/image";
+import { ImageProps } from "next/image";
 
 const Card = React.forwardRef<
 	HTMLDivElement,
@@ -41,14 +43,36 @@ const CardTitle = React.forwardRef<
 ));
 CardTitle.displayName = "CardTitle";
 
-const CardImage = React.forwardRef<
-	HTMLImageElement,
-	React.ImgHTMLAttributes<HTMLImageElement>
->(({ className, src, alt, ...props }, ref) => (
-	<div {...props} ref={ref}>
-		<img src={src} alt={alt} className={className} />
-	</div>
-));
+interface CardImageProps
+	extends React.ImgHTMLAttributes<HTMLImageElement & ImageProps> {
+	alt?: string;
+	width: number | `${number}`;
+	height: number | `${number}`;
+}
+
+const CardImage = React.forwardRef<HTMLImageElement, CardImageProps>(
+	(
+		{
+			className,
+			height,
+			width,
+			src = "waijdoajdiad",
+			alt = "WOkwoado",
+			...props
+		},
+		ref
+	) => (
+		<div {...props} ref={ref}>
+			<Image
+				width={width}
+				height={height}
+				src={src}
+				alt={alt}
+				className={className}
+			/>
+		</div>
+	)
+);
 
 CardImage.displayName = "CardImage";
 

@@ -125,20 +125,4 @@ const WrapperAnimate = React.forwardRef<HTMLDivElement, WrapperAnimateProps>(
 
 WrapperAnimate.displayName = "WrapperAnimate";
 
-const draggable = true;
-const droppable = true;
-
-export const NodeWrapper = withNode(WrapperAnimate, {
-	draggable,
-	droppable,
-});
-
-NodeWrapper.craft = {
-	displayName: "Wrapper",
-	props: {
-		className: "w-20 flex",
-	},
-	related: {
-		toolbar: SettingsControl,
-	},
-};
+export { WrapperAnimate };

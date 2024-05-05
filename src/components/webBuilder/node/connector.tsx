@@ -18,7 +18,7 @@ const importPathMap: { [key: string]: string } = {
 	carddescription: CARD_PATH,
 };
 
-export const withNode = <T extends {}>(
+export const withNode = <T extends { className?: string }>(
 	Component: React.ComponentType<T>,
 	{ draggable = true, droppable = true } = {}
 ) => {
@@ -85,7 +85,7 @@ export const withNode = <T extends {}>(
 		importPathMapKey && importPathMap[importPathMapKey]
 	);
 
-	WithNode.craft = {
+	(WithNode as any).craft = {
 		displayName: Component.displayName,
 		custom: {
 			importPath: importPathMapKey ? importPathMap[importPathMapKey] || "" : "",
