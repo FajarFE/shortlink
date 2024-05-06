@@ -1,6 +1,12 @@
 import { useEditor, useNode } from "@craftjs/core";
 import { Component, ReactNode, useEffect, useState } from "react";
-import Select, { MultiValue, components, createFilter } from "react-select";
+import Select, {
+	MultiValue,
+	Options,
+	OptionsOrGroups,
+	components,
+	createFilter,
+} from "react-select";
 import { suggestions } from "@/lib/tw-classes";
 import {
 	Option,
@@ -60,30 +66,33 @@ export const SettingsControl = () => {
 	const height = 35;
 
 	interface MenuListProps {
-		options: any[];
-		children: any[];
+		options: OptionsOrGroups<Option, any>;
+		children: React.ReactNode[];
 		maxHeight: number;
-		getValue: () => any[];
+		getValue: () => Options<Option>;
 	}
 
-	class MenuList extends Component<MenuListProps> {
-		render() {
-			const { options, children, maxHeight, getValue } = this.props;
-			const [value] = getValue();
-			const initialOffset = options.indexOf(value) * height;
+	const MenuList: React.FC<MenuListProps> = ({
+		options,
+		children,
+		maxHeight,
+		getValue,
+	}) => {
+		const [value] = getValue();
+		const initialOffset =
+			options.findIndex((option) => option.value === value.value) * height; // Assuming each option has a height of 35
 
-			return (
-				<List
-					width={"100%"} // Replace with the desired width value
-					height={maxHeight}
-					itemCount={children.length}
-					itemSize={height}
-					initialScrollOffset={initialOffset}>
-					{({ index, style }) => <div style={style}>{children[index]}</div>}
-				</List>
-			);
-		}
-	}
+		return (
+			<List
+				width={"100%"}
+				height={maxHeight}
+				itemCount={children.length}
+				itemSize={height}
+				initialScrollOffset={initialOffset}>
+				{({ index, style }) => <div style={style}>{children[index]}</div>}
+			</List>
+		);
+	};
 
 	const CustomOption = ({
 		children,
@@ -96,8 +105,9 @@ export const SettingsControl = () => {
 		// eslint-disable-next-line no-unused-vars
 		const { onMouseMove, onMouseOver, ...rest } = props.innerProps;
 		const newProps = { ...props, innerProps: rest };
+		const { innerProps } = props;
 		return (
-			<components.Option {...newProps}>
+			<components.Option {...innerProps}>
 				<div className='text-xs'>{children}</div>
 			</components.Option>
 		);
